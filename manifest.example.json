@@ -1,0 +1,28 @@
+{
+  "launcher": {
+    "version": "1.0.1",
+    "url": "https://example.com/OmniroLauncher.exe",
+    "sha256": ""
+  },
+  "files": [
+    {
+      "path": "samp.exe",
+      "url": "https://example.com/game/samp.exe",
+      "sha256": "ХЭШ_SHA256_ФАЙЛА",
+      "size": 123456
+    },
+    {
+      "path": "data/example.dat",
+      "url": "https://example.com/game/data/example.dat",
+      "sha256": "ХЭШ_SHA256_ФАЙЛА",
+      "size": 654321
+    }
+  ],
+  "news": [
+    {
+      "title": "Открытие сервера",
+      "date": "02.11.2026",
+      "text": "Текст новости. Появится на вкладке «Новости» в лаунчере."
+    }
+  ]
+}

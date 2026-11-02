@@ -1,0 +1,239 @@
+<Window x:Class="OmniroLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OMNIRO ONLINE" Icon="icon.ico" Width="1080" Height="680"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <Border Background="{StaticResource Bg}" CornerRadius="14"
+            BorderBrush="#26262E" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок окна -->
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseDown">
+                <StackPanel Orientation="Horizontal" Margin="18,0,0,0" VerticalAlignment="Center">
+                    <Image Source="logo.png" Width="18" Height="18" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock Text="OMNIRO ONLINE  •  LAUNCHER" Margin="10,0,0,0" VerticalAlignment="Center"
+                               FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource TextDim}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,8,0">
+                    <Button Style="{StaticResource WinBtn}" Content="—" Click="Min_Click"/>
+                    <Button Style="{StaticResource WinBtnClose}" Content="✕" Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Боковая панель -->
+                <Border Grid.Column="0" Background="{StaticResource Panel}" CornerRadius="0,0,0,14">
+                    <Grid Margin="16,20,16,16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="4,0,0,0">
+                            <Image Source="logo.png" Width="46" Height="46" VerticalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                                <TextBlock Text="OMNIRO" FontSize="24" FontWeight="Black"
+                                           Foreground="{StaticResource TextMain}"/>
+                                <TextBlock Text="ONLINE" FontSize="12" FontWeight="Bold"
+                                           Foreground="{StaticResource Accent}" Margin="2,-3,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Margin="0,36,0,0">
+                            <RadioButton x:Name="NavHome" Style="{StaticResource NavButton}" GroupName="nav"
+                                         IsChecked="True" Content="Главная" Tag="Home" Checked="Nav_Checked"/>
+                            <RadioButton x:Name="NavNews" Style="{StaticResource NavButton}" GroupName="nav"
+                                         Content="Новости" Tag="News" Checked="Nav_Checked"/>
+                            <RadioButton x:Name="NavSettings" Style="{StaticResource NavButton}" GroupName="nav"
+                                         Content="Настройки" Tag="Settings" Checked="Nav_Checked"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2">
+                            <Button Style="{StaticResource GhostButton}" Content="Сайт" Click="Site_Click" Margin="0,0,0,8"/>
+                            <Button Style="{StaticResource GhostButton}" Content="Форум" Click="Forum_Click" Margin="0,0,0,8"/>
+                            <Button Style="{StaticResource GhostButton}" Content="Telegram-канал" Click="Telegram_Click"/>
+                            <TextBlock x:Name="VersionText" Margin="4,14,0,0" FontSize="11"
+                                       Foreground="{StaticResource TextDim}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Страницы -->
+                <Grid Grid.Column="1" Margin="28,8,28,24">
+
+                    <!-- ГЛАВНАЯ -->
+                    <Grid x:Name="HomePage">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="UpdateBanner" Grid.Row="0" Visibility="Collapsed"
+                                Background="#2A1015" BorderBrush="{StaticResource Accent}" BorderThickness="1"
+                                CornerRadius="10" Padding="16,10" Margin="0,0,0,14">
+                            <Grid>
+                                <TextBlock x:Name="UpdateText" VerticalAlignment="Center" FontSize="14"
+                                           FontWeight="SemiBold" Foreground="{StaticResource TextMain}"/>
+                                <Button Style="{StaticResource GhostButton}" Content="Обновить лаунчер"
+                                        HorizontalAlignment="Right" Click="UpdateLauncher_Click"/>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1" CornerRadius="18" Padding="36">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#3A0C14" Offset="0"/>
+                                    <GradientStop Color="#14080B" Offset="0.55"/>
+                                    <GradientStop Color="#0E0E12" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid>
+                            <Image Source="logo.png" Width="250" Height="250" HorizontalAlignment="Right"
+                                   VerticalAlignment="Top" Margin="0,-6,6,0" Opacity="0.95"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock Text="ДОБРО ПОЖАЛОВАТЬ НА" FontSize="12" FontWeight="Bold"
+                                           Foreground="{StaticResource Accent}"/>
+                                <TextBlock Text="OMNIRO ONLINE" FontSize="52" FontWeight="Black"
+                                           Foreground="{StaticResource TextMain}" Margin="0,2,0,6"/>
+                                <TextBlock Text="Играй на нашем сервере: свежие обновления, живое сообщество и честная игра."
+                                           FontSize="15" Foreground="{StaticResource TextDim}"
+                                           TextWrapping="Wrap" MaxWidth="520"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,22,0,0">
+                                    <Ellipse x:Name="StatusDot" Width="10" Height="10" Fill="#8B8B96"
+                                             VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="StatusText" Text="Проверка сервера…" Margin="10,0,0,0"
+                                               FontSize="14" FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextMain}" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="PingText" Margin="16,0,0,0" FontSize="14"
+                                               Foreground="{StaticResource TextDim}" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="ServerAddrText" Margin="16,0,0,0" FontSize="14"
+                                               Foreground="{StaticResource TextDim}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="2" Background="{StaticResource Panel}" CornerRadius="14"
+                                Padding="22" Margin="0,16,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,24,0">
+                                    <TextBlock Text="НИКНЕЙМ" Style="{StaticResource Label}" Margin="0,0,0,6"/>
+                                    <TextBox x:Name="NickBox" MaxLength="20" LostFocus="Setting_Changed"/>
+                                    <Grid Margin="0,16,0,6">
+                                        <TextBlock x:Name="ProgressText" Text="Готов к запуску" FontSize="13"
+                                                   Foreground="{StaticResource TextDim}"/>
+                                        <TextBlock x:Name="SpeedText" HorizontalAlignment="Right" FontSize="13"
+                                                   Foreground="{StaticResource TextDim}"/>
+                                    </Grid>
+                                    <ProgressBar x:Name="ProgressBarMain" Minimum="0" Maximum="100" Value="0"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <Button x:Name="PlayButton" Style="{StaticResource PlayButton}"
+                                            Content="ИГРАТЬ" Width="230" Height="66" Click="Play_Click"/>
+                                    <Button x:Name="CancelButton" Style="{StaticResource GhostButton}"
+                                            Content="Отмена" Margin="0,10,0,0" Visibility="Collapsed"
+                                            Click="Cancel_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <!-- НОВОСТИ -->
+                    <Grid x:Name="NewsPage" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Новости" FontSize="28" FontWeight="Bold"
+                                   Foreground="{StaticResource TextMain}" Margin="0,8,0,18"/>
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock x:Name="NewsEmpty" Text="Новостей пока нет." FontSize="14"
+                                           Foreground="{StaticResource TextDim}"/>
+                                <ItemsControl x:Name="NewsList">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="{StaticResource Panel}" CornerRadius="12"
+                                                    Padding="20" Margin="0,0,8,12">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold"
+                                                               Foreground="{StaticResource TextMain}" TextWrapping="Wrap"/>
+                                                    <TextBlock Text="{Binding Date}" FontSize="12"
+                                                               Foreground="{StaticResource Accent}" Margin="0,4,0,8"/>
+                                                    <TextBlock Text="{Binding Text}" FontSize="14" LineHeight="21"
+                                                               Foreground="{StaticResource TextDim}" TextWrapping="Wrap"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <!-- НАСТРОЙКИ -->
+                    <ScrollViewer x:Name="SettingsPage" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Настройки" FontSize="28" FontWeight="Bold"
+                                       Foreground="{StaticResource TextMain}" Margin="0,8,0,0"/>
+
+                            <TextBlock Text="ПАПКА С ИГРОЙ" Style="{StaticResource Label}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="GameDirBox" LostFocus="Setting_Changed"/>
+                                <Button Grid.Column="1" Style="{StaticResource GhostButton}" Content="Обзор…"
+                                        Margin="10,0,0,0" Click="Browse_Click"/>
+                            </Grid>
+
+                            <TextBlock Text="ГРАФИКА И ПРОИЗВОДИТЕЛЬНОСТЬ" Style="{StaticResource Label}" Margin="0,26,0,2"/>
+                            <CheckBox x:Name="ChkPriority" Content="Высокий приоритет процесса игры" Click="Setting_Changed"/>
+                            <CheckBox x:Name="ChkFullscreen" Content="Отключить оптимизацию полноэкранного режима Windows" Click="Setting_Changed"/>
+                            <CheckBox x:Name="ChkDpi" Content="Чёткое изображение на экранах с масштабом (High DPI)" Click="Setting_Changed"/>
+                            <CheckBox x:Name="ChkAdmin" Content="Запускать игру от имени администратора" Click="Setting_Changed"/>
+
+                            <TextBlock Text="ЛАУНЧЕР" Style="{StaticResource Label}" Margin="0,26,0,2"/>
+                            <CheckBox x:Name="ChkUpdates" Content="Проверять обновления при запуске" Click="Setting_Changed"/>
+                            <CheckBox x:Name="ChkClose" Content="Закрывать лаунчер после запуска игры" Click="Setting_Changed"/>
+
+                            <TextBlock Text="ДОПОЛНИТЕЛЬНЫЕ ПАРАМЕТРЫ ЗАПУСКА" Style="{StaticResource Label}" Margin="0,26,0,6"/>
+                            <TextBox x:Name="ExtraArgsBox" LostFocus="Setting_Changed"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,26,0,12">
+                                <Button Style="{StaticResource GhostButton}" Content="Проверить и восстановить файлы"
+                                        Click="Repair_Click"/>
+                                <Button Style="{StaticResource GhostButton}" Content="Открыть папку игры"
+                                        Margin="10,0,0,0" Click="OpenGameDir_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

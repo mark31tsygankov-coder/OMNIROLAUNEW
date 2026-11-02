@@ -1,0 +1,11 @@
+{
+  "serverName": "OMNIRO ONLINE",
+  "serverIp": "188.127.241.74",
+  "serverPort": 4337,
+  "gameExe": "samp.exe",
+  "launchArgs": "-c -n {nick} -h {ip} -p {port}",
+  "manifestUrl": "",
+  "siteUrl": "https://omniro-online.gt.tc/?i=1",
+  "forumUrl": "https://omniroonline-forum.gt.tc/?page=home",
+  "telegramUrl": "https://t.me/omniro_news"
+}
